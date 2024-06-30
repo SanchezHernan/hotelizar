@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
-import Volver from '../components/Volver'
+import Volver from '../../components/Volver'
 import { Box, Button, Select, SimpleGrid, Text } from '@chakra-ui/react'
-import Estadisticas from '../components/Estadisticas'
-import GraficoTorta from '../components/GraficoTorta'
-import { UserContext } from '../contexts/UserContext'
+import Estadisticas from './components/Estadisticas'
+import LineChart from './components/LineChart'
+import GraficoTorta from '../../components/GraficoTorta'
+import { UserContext } from '../../contexts/UserContext'
+
 
 const Panel = () => {
 
@@ -48,15 +50,6 @@ const Panel = () => {
       "fondo":"oscuro.100",
       "letra":"#fff"
     },
-    {
-      "titulo": "Ingresos Generados",
-      "subtitulos": [
-        {"nombre": "Este mes", "valor": 15000},
-        {"nombre": "Total", "valor": 120000}
-      ],
-      "fondo":"claro.100",
-      "letra":"#fff"
-    },
   ];
 
   const user_estadisticas = [
@@ -99,7 +92,7 @@ const Panel = () => {
         {"nombre": "Muy Bueno", "valor": 4},
         {"nombre": "Regular", "valor": 3}
       ],
-      "fondo":"claro.100",
+      "fondo":"oscuro.100",
       "letra":"#fff"
     },
     {
@@ -124,10 +117,10 @@ const Panel = () => {
       "letra":"#fff"
     },
     {
-      "titulo": "Ingresos Generados",
+      "titulo": "Cancelaciones recientes",
       "subtitulos": [
-        {"nombre": "Último mes", "valor": 400},
-        {"nombre": "Total", "valor": 1400}
+        {"nombre": "Esta semana", "valor": 8},
+        {"nombre": "Este mes", "valor": 18}
       ],
       "fondo":"oscuro.100",
       "letra":"#fff"
@@ -139,15 +132,6 @@ const Panel = () => {
         {"nombre": "Valoración 2", "valor": 4}
       ],
       "fondo":"claro.100",
-      "letra":"#fff"
-    },
-    {
-      "titulo": "Cancelaciones recientes",
-      "subtitulos": [
-        {"nombre": "Esta semana", "valor": 8},
-        {"nombre": "Este mes", "valor": 18}
-      ],
-      "fondo":"oscuro.100",
       "letra":"#fff"
     }
   ];
@@ -166,6 +150,60 @@ const Panel = () => {
     }
   };
 
+
+  // Line Chart
+
+  const data = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
+    datasets: [
+      {
+        label: 'Ingresos',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(75,192,192,0.4)',
+        borderColor: 'rgba(75,192,192,1)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(75,191,192,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 2,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: [65, 59, 80, 81, 56, 45, 51]
+      }
+    ]
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: ''
+        }
+      },
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Mil'
+        }
+      }
+    }
+  };
+
+
+
+
   const estadisticas_data = getEstadisticas();
 
   const getUserMessage = () => {
@@ -183,6 +221,7 @@ const Panel = () => {
   };
 
   const handleRoleChange = (e) => {
+    console.log(e.target.value);
     setUserRole(e.target.value);
   };
 
@@ -196,6 +235,9 @@ const Panel = () => {
         h="100vh" overflowY="auto"
       >
         <SimpleGrid columns={[1, 2]} spacing={["0","20px"]} width="100%">
+          { (userRole === 'host' || userRole === 'admin') &&
+            <LineChart data={data} options={options} />
+          }
           {estadisticas_data.map((estadistica, index) => (
             <Estadisticas key={index} estadistica={estadistica} />
           ))}

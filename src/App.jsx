@@ -6,7 +6,7 @@ import Resultados from './pages/Resultados';
 import Login from './pages/Login';
 import Alojamiento from './pages/Alojamiento';
 import Registro1 from './pages/Registro1';
-import Panel from './pages/Panel';
+import Panel from './pages/Dashboard/Panel';
 import SubirAlojamiento from './pages/Alojamiento/SubirAlojamiento';
 import Propietario from './pages/Propietario';
 import PageMapa from './pages/PageMapa';
