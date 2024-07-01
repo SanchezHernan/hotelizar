@@ -14,8 +14,9 @@ import { UserProvider } from './contexts/UserContext.jsx';
 
 function App() {
   return (
-    <UserProvider>
+    
       <BrowserRouter>
+        <UserProvider>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/resultados" element={<Resultados />} />
@@ -27,8 +28,8 @@ function App() {
           <Route path="/subir-alojamiento" element={<SubirAlojamiento />} />
           <Route path="/mapa" element={<PageMapa />} />
         </Routes>
+        </UserProvider>
       </BrowserRouter>
-    </UserProvider>
   );
 }
 
