@@ -1,6 +1,6 @@
-import { Box, Button, FormControl, Input, InputGroup, InputLeftElement, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, FormControl, Input, InputGroup, InputLeftElement, InputRightElement, Text, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { BsArrowRightCircle } from 'react-icons/bs';
+import { BsArrowRightCircle, BsEye, BsEyeSlash } from 'react-icons/bs';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 // import { FcGoogle } from 'react-icons/fc';
@@ -12,10 +12,11 @@ const FormLogin = () => {
     const navigate = useNavigate();
     const toast = useToast();
     const [cargando, setCargando] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
-        correo: '',
-        contra: '',
-      });
+      correo: '',
+      contra: '',
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -90,8 +91,14 @@ const FormLogin = () => {
               />
               <Input id="password-input" color="#fff" sx={{ '::placeholder': { color: '#fff' }, }}
                 placeholder="Contraseña"
-                onChange={handleChange} name="contra" type='password'
+                type={showPassword ? 'text' : 'password'}
+                onChange={handleChange} name="contra"
               />
+              <InputRightElement>
+                <Button variant="ghost" onClick={() => setShowPassword(!showPassword)} h="1.25rem" size="sm">
+                {showPassword ? <BsEyeSlash size="1.1em" color="#fff" /> : <BsEye size="1.1em" color="#fff" />}
+                </Button>
+              </InputRightElement>
             </InputGroup>
           </Box>
           <Box w="100%">

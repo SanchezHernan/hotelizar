@@ -1,6 +1,6 @@
-import { Box, Button, FormControl, Input, InputGroup, InputLeftAddon, InputLeftElement, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, FormControl, Input, InputGroup, InputLeftElement, InputRightElement, Text, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { BsArrowRightCircle, BsCalendarDate } from 'react-icons/bs';
+import { BsArrowRightCircle, BsEye, BsEyeSlash } from 'react-icons/bs';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { FcGoogle } from 'react-icons/fc';
@@ -15,6 +15,7 @@ const FormRegistro1 = () => {
     const toast = useToast();
     
     const [cargando, setCargando] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         email_client: "",
         password_client: "",
@@ -69,14 +70,19 @@ const FormRegistro1 = () => {
         <Box w="100%">
             <InputGroup>
                 <InputLeftElement
-                pointerEvents="none"
-                children={<RiLockPasswordLine color='#fff'/>}
+                    pointerEvents="none"
+                    children={<RiLockPasswordLine color='#fff' />}
                 />
-                <Input color="#fff" sx={{ '::placeholder': { color: '#fff'},}}
-                placeholder="Contraseña"
-                onChange={handleChange} name="password_client"
-                type='password' id="password"
+                <Input color="#fff" sx={{ '::placeholder': { color: '#fff' }, }}
+                    placeholder="Contraseña"
+                    onChange={handleChange} name="password_client"
+                    type={showPassword ? 'text' : 'password'} id="password"
                 />
+                <InputRightElement>
+                    <Button variant="ghost" onClick={() => setShowPassword(!showPassword)} h="1.25rem" size="sm">
+                        {showPassword ? <BsEyeSlash size="1.1em" color="#fff" /> : <BsEye size="1.1em" color="#fff" />}
+                    </Button>
+                </InputRightElement>
             </InputGroup>
         </Box>
         <Box w="100%">

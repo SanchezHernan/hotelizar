@@ -30,6 +30,27 @@ const Mapa = () => {
   }, []);
 
  
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setViewport((prevViewport) => ({
+            ...prevViewport,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }));
+        },
+        (error) => {
+          console.error('Error obteniendo la ubicación:', error);
+        },
+        { enableHighAccuracy: true, timeout: 9000, maximumAge: 0 }
+      );
+    } else {
+      console.error('Geolocalización no es soportada por este navegador.');
+    }
+  }, []);
+
+
   const handleMapClick = () => {
     setSelectedAlojamiento(null);
   };
