@@ -1,10 +1,24 @@
 import { Box, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useContext } from 'react'
 import FormPropietario from '../components/FormPropietario';
 import fondo from '../assets/img/fondo-propietario.jpg';
 import Volver from '../components/Volver';
+import { UserContext } from '../contexts/UserContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Propietario = () => {
+
+  const { userRole } = useContext(UserContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (userRole === 'guest') {
+      navigate('/login', { state: { from: location } });
+    }
+  }, [userRole, navigate, location]);
+
+
   return (
     <Box w="100%" display="flex" flexDirection="column" alignItems="center" h="100vh" backgroundImage={fondo} backgroundSize="cover" backgroundPosition="center">
         <Box

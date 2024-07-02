@@ -1,13 +1,22 @@
 import { Box } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import FormLogin from '../components/FormLogin';
 import fondo from '../assets/img/fondo_login.jpg'
+import { UserContext } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
+  const { userRole } = useContext(UserContext);
+  const navigate = useNavigate();
+
   useEffect(()=>{
     document.cookie = "rolUser=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-  }, []);
+    if (userRole !== 'guest') {
+      navigate('/');
+    }
+  }, [userRole]);
+
 
   return (
     <Box w="100%" backgroundImage={fondo} backgroundSize="cover" backgroundPosition="center" width={["100vw", "100vw", "99vw"]} height="100vh" display="flex" flexDirection="column" alignItems="center" h="100vh" justifyContent="center">

@@ -11,14 +11,15 @@ import SubirAlojamiento from './pages/Alojamiento/SubirAlojamiento';
 import Propietario from './pages/Propietario';
 import PageMapa from './pages/PageMapa';
 import { UserProvider } from './contexts/UserContext.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+
 
 function App() {
   return (
-    
-      <BrowserRouter>
-        <UserProvider>
+    <BrowserRouter>
+      <UserProvider>
         <Routes>
-          <Route index element={<Home />} />
+        <Route index element={<Home />} />
           <Route path="/resultados" element={<Resultados />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro1 />} />
@@ -28,8 +29,8 @@ function App() {
           <Route path="/subir-alojamiento" element={<SubirAlojamiento />} />
           <Route path="/mapa" element={<PageMapa />} />
         </Routes>
-        </UserProvider>
-      </BrowserRouter>
+      </UserProvider>
+    </BrowserRouter>
   );
 }
 

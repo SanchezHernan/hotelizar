@@ -29,14 +29,17 @@ const FormRegistro1 = () => {
         }));
       };
 
-      const handleClick = async() =>{
+    const handleClick = async() =>{
         setCargando(true);
 
         let registro = register(formData.email_client, formData.password_client);
 
         if (!registro.error){
             setCargando(false);
-            navigate('/');
+
+            const from = location.state?.from?.pathname || "/";
+
+            navigate(from);
         } else {
             setCargando(false);
             toast({

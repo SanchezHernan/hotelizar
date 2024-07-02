@@ -18,7 +18,7 @@ const Header = () => {
         checkIn: '',
         checkOut: '',
     });
-    const { userRole } = useContext(UserContext);
+    const { userRole, setUserRole } = useContext(UserContext);
 
     // DatePicker
     const [checkInDate, setCheckInDate] = useState(null);
@@ -39,6 +39,12 @@ const Header = () => {
             navigate('/resultados');
         }, 1500);
     }
+
+    const handleLogout = () => {
+        document.cookie = "userRole=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+        setUserRole('guest');
+        navigate('/login');
+    };
 
     
     return (
@@ -154,7 +160,7 @@ const Header = () => {
                 </DrawerBody>
                 <DrawerFooter>
                     {userRole && userRole === 'user' && (
-                        <Button bg="red.500" color="#fff" onClick={() => { document.cookie = "userRole=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/"; navigate('/login'); }} leftIcon={<IoMdExit />}> Cerrar sesión </Button>
+                        <Button bg="red.500" color="#fff" onClick={handleLogout} leftIcon={<IoMdExit />}> Cerrar sesión </Button>
                     )}
                 </DrawerFooter>
                 </DrawerContent>

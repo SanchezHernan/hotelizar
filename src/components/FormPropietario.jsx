@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, Input, InputGroup, InputLeftAddon, InputLeftElement, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiRename } from 'react-icons/bi';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import { FaAddressCard } from 'react-icons/fa';
@@ -7,7 +7,12 @@ import { GiDirectionSigns } from 'react-icons/gi';
 
 const FormPropietario = () => {
 
-    const [formData, setFormData] = useState();
+    const [formData, setFormData] = useState({
+        fullname_client: '',
+        dni: '',
+        direccion: '',
+        phone_client: '',
+    });
     const [cargando, setCargando] = useState(false);
 
     const handleChange = (e) => {
@@ -20,9 +25,11 @@ const FormPropietario = () => {
 
     const handleClick = async() =>{
         setCargando(true);
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             setCargando(false);
         }, 1500);
+
+        return () => clearTimeout(timeoutId);
     }
 
 
@@ -38,39 +45,57 @@ const FormPropietario = () => {
                 children={<BiRename color='#fff'/>}
                 />
                 <Input color="#fff" sx={{ '::placeholder': { color: '#fff'},}}
-                placeholder="Apellido y nombre"
-                onChange={handleChange} name="fullname_client"
+                    placeholder="Apellido y nombre"
+                    onChange={handleChange} name="fullname_client"
+                    aria-label="Apellido y nombre"
+                    id="fullname_client"
                 />
             </InputGroup>
         </Box>
         <Box w="100%">
             <InputGroup>
                 <InputLeftElement
-                pointerEvents="none"
-                children={<FaAddressCard color='#fff'/>}
+                    pointerEvents="none"
+                    children={<FaAddressCard color='#fff'/>}
                 />
                 <Input color="#fff" sx={{ '::placeholder': { color: '#fff'},}}
-                placeholder="Nro de documento"
-                onChange={handleChange} name="dni"
+                    placeholder="Nro de documento"
+                    onChange={handleChange} name="dni"
+                    aria-label="Nro de documento"
+                    id="dni"
                 />
             </InputGroup>
         </Box>
         <Box w="100%">
             <InputGroup>
                 <InputLeftElement
-                pointerEvents="none"
-                children={<GiDirectionSigns color='#fff'/>}
+                    pointerEvents="none"
+                    children={<GiDirectionSigns color='#fff'/>}
                 />
                 <Input color="#fff" sx={{ '::placeholder': { color: '#fff'},}}
-                placeholder="Dirección"
-                onChange={handleChange} name="direccion"
+                    placeholder="Dirección"
+                    onChange={handleChange} name="direccion"
+                    aria-label="Dirección"
+                    id="direccion"
                 />
             </InputGroup>
         </Box>
         <Box w="100%">
                 <InputGroup>
                     <InputLeftAddon children='+54'/>
-                    <Input type='number' w="100%" h="40px" variant='outline' placeholder="3446234312" color="#fff" sx={{ '::placeholder': { color: '#fff'},}} name="phone_client" onChange={handleChange} />
+                    <Input 
+                        type='number' 
+                        w="100%" 
+                        h="40px" 
+                        variant='outline' 
+                        placeholder="3446234312" 
+                        color="#fff" 
+                        sx={{ '::placeholder': { color: '#fff'},}} 
+                        name="phone_client" 
+                        onChange={handleChange} 
+                        aria-label="Número de teléfono"
+                        id="phone_client"
+                    />
                 </InputGroup>
         </Box>
         <Box w="100%">

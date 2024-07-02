@@ -1,10 +1,17 @@
 import { Box, Button, Input, Select, Text, Textarea, useToast } from '@chakra-ui/react';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useContext } from 'react';
 import Volver from '../../components/Volver';
 import { IoIosArrowDropright } from 'react-icons/io';
 import Servicios from '../../components/Servicios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
 const SubirAlojamiento = () => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { userRole } = useContext(UserContext);
+
   const [formulario, setFormulario] = useState({
     tipo: '',
     titulo: '',
@@ -92,6 +99,14 @@ const SubirAlojamiento = () => {
     { label: 'Cantidad de habitaciones', name: 'cantidad_habitaciones', type: 'select', options: [1, 2, 3, 4, 5] },
     { label: 'Cantidad de baños', name: 'cantidad_baño', type: 'select', options: [1, 2, 3, 4, 5] },
   ], []);
+
+  useEffect(() => {
+    if (userRole === 'guest') {
+      navigate('/login', { state: { from: location } });
+    }
+    console.log("hola");
+  }, [userRole, navigate, location]);
+
 
   return (
     <Box w="100%" display="flex" flexDirection="column" alignItems="center" bg="#fff">
