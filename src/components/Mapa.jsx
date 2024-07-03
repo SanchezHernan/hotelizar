@@ -15,6 +15,7 @@ const Mapa = () => {
   const [alojamientos, setAlojamientos] = useState([]);
   const [selectedAlojamiento, setSelectedAlojamiento] = useState(null);
   const [error, setError] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +35,10 @@ const Mapa = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          setUserLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
           setViewport((prevViewport) => ({
             ...prevViewport,
             latitude: position.coords.latitude,
@@ -87,6 +92,15 @@ const Mapa = () => {
           >
           </Marker>
         ))}
+
+        {userLocation && (
+          <Marker
+            latitude={userLocation.latitude}
+            longitude={userLocation.longitude}
+          >
+            <div className="user-location-marker" />
+          </Marker>
+        )}
 
         {selectedAlojamiento && (
           <Popup
