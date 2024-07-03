@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import FormPropietario from '../components/FormPropietario';
 import fondo from '../assets/img/fondo-propietario.jpg';
 import Volver from '../components/Volver';

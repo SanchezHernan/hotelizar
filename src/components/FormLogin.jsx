@@ -3,12 +3,13 @@ import React, { useContext, useState } from 'react'
 import { BsArrowRightCircle, BsEye, BsEyeSlash } from 'react-icons/bs';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { login, getUserById } from '../services/auth';
 import { UserContext } from '../contexts/UserContext';
 
 const FormLogin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const toast = useToast();
   const { setUserRole } = useContext(UserContext);
   const [cargando, setCargando] = useState(false);

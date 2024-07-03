@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, Input, InputGroup, InputLeftAddon, InputLeftElement, Text } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BiRename } from 'react-icons/bi';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import { FaAddressCard } from 'react-icons/fa';

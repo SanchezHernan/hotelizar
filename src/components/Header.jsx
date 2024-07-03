@@ -41,11 +41,14 @@ const Header = () => {
     }
 
     const handleLogout = () => {
+        // Eliminar todas las cookies relacionadas con el usuario
+        document.cookie = "tokenUser=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+        document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
         document.cookie = "userRole=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+        
         setUserRole('guest');
         navigate('/login');
     };
-
     
     return (
         <Box className="HeaderContainer" w="100%" display="flex" flexDirection="column" alignItems="center" gap="10px">
