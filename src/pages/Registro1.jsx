@@ -1,22 +1,10 @@
 import { Box } from '@chakra-ui/react'
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import fondo from '../assets/img/fondo_registro.jpg'
 import FormRegistro1 from '../components/FormRegistro1';
-import { UserContext } from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
-
+import withGuestRedirect from '../hoc/withGuestRedirect';
 
 const Registro1 = () => {
-
-  const { userRole } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  useEffect(()=>{
-    if (userRole !== 'guest') {
-      navigate('/');
-    }
-  }, [userRole]);
-
 
   return (
     <Box w="100%" backgroundImage={fondo} backgroundSize="cover" backgroundPosition="center" width={["100vw", "100vw", "99vw"]} height="100vh" display="flex" flexDirection="column" alignItems="center" h="100vh" justifyContent="center">
@@ -38,4 +26,4 @@ const Registro1 = () => {
   )
 }
 
-export default Registro1
+export default withGuestRedirect(Registro1);

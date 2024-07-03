@@ -1,21 +1,10 @@
 import { Box } from '@chakra-ui/react'
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import FormLogin from '../components/FormLogin';
 import fondo from '../assets/img/fondo_login.jpg'
-import { UserContext } from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
+import withGuestRedirect from '../hoc/withGuestRedirect';
 
 const Login = () => {
-
-  const { userRole } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  useEffect(()=>{
-    document.cookie = "rolUser=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    if (userRole !== 'guest') {
-      navigate('/');
-    }
-  }, [userRole]);
 
 
   return (
@@ -38,4 +27,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default withGuestRedirect(Login);

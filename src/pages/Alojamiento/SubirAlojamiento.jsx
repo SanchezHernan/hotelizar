@@ -5,6 +5,7 @@ import { IoIosArrowDropright } from 'react-icons/io';
 import Servicios from '../../components/Servicios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 const SubirAlojamiento = () => {
 
@@ -104,7 +105,6 @@ const SubirAlojamiento = () => {
     if (userRole === 'guest') {
       navigate('/login', { state: { from: location } });
     }
-    console.log("hola");
   }, [userRole, navigate, location]);
 
 
@@ -146,4 +146,4 @@ const SubirAlojamiento = () => {
   );
 };
 
-export default SubirAlojamiento;
+export default withAuthRedirect(SubirAlojamiento);
