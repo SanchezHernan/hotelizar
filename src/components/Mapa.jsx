@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Box } from "@chakra-ui/react";
@@ -11,60 +11,83 @@ const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const Mapa = () => {
   const [viewport, setViewport] = useState(initialViewport);
-
   const [alojamientos, setAlojamientos] = useState([]);
   const [selectedAlojamiento, setSelectedAlojamiento] = useState(null);
   const [error, setError] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const rentalsData = await getRentals();
-        setAlojamientos(rentalsData);
-      } catch (error) {
-        setError(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const rentalsData = await getRentals();
+  //       setAlojamientos(rentalsData);
+  //     } catch (error) {
+  //       setError(error);
+  //     }
+  //   };
 
-    fetchData();
+  //   fetchData();
+  // }, []);
+
+  const fetchRentals = useCallback(async () => {
+    try {
+      const rentalsData = await getRentals();
+      setAlojamientos(rentalsData);
+    } catch (error) {
+      setError(error);
+    }
   }, []);
 
- 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-          setViewport((prevViewport) => ({
-            ...prevViewport,
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          }));
-        },
-        (error) => {
-          console.error('Error obteniendo la ubicación:', error);
-        },
-        { enableHighAccuracy: true, timeout: 9000, maximumAge: 0 }
-      );
+    fetchRentals();
+  }, [fetchRentals]);
+
+
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const lat = parseFloat(urlParams.get('lat'));
+    const lng = parseFloat(urlParams.get('lng'));
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+      setViewport((prevViewport) => ({
+        ...prevViewport,
+        latitude: lat,
+        longitude: lng,
+        zoom: 15,
+      }));
     } else {
-      console.error('Geolocalización no es soportada por este navegador.');
+      // If no lat and lng parameters, get the user's location
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setUserLocation({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            });
+            setViewport((prevViewport) => ({
+              ...prevViewport,
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            }));
+          },
+          (error) => {
+            console.error('Error obteniendo la ubicación:', error);
+          },
+          { enableHighAccuracy: true, timeout: 9000, maximumAge: 0 }
+        );
+      } else {
+        console.error('Geolocalización no es soportada por este navegador.');
+      }
     }
   }, []);
 
 
-  const handleMapClick = () => {
-    setSelectedAlojamiento(null);
-  };
+  const handleMapClick = () => setSelectedAlojamiento(null);
+  ;
 
-  const handlePopupClick = (event) => {
-    // Esto evita que el evento se propague al mapa
-    event.stopPropagation();
-  };
-
+  const handlePopupClick = (event) => event.stopPropagation();
+  
   if (error) {
     return <Box>Error: {error.message}</Box>;
   }
@@ -116,6 +139,8 @@ const Mapa = () => {
               rating={selectedAlojamiento.averagerating_rental}
               price={selectedAlojamiento.totalrprice_rental}
               id={selectedAlojamiento.id_rental}
+              lat={selectedAlojamiento.lat_rental}
+              lng={selectedAlojamiento.lng_rental}
             />
           </Popup>
         )}

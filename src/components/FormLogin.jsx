@@ -87,11 +87,6 @@ const FormLogin = () => {
               placeholder="Correo electrónico"
               onChange={handleChange} name="correo"
             />
-            <InputRightElement>
-              <Button variant="ghost" onClick={() => setShowPassword(!showPassword)} h="1.25rem" size="sm">
-                  {showPassword ? <BsEyeSlash size="1.1em" color="#fff" /> : <BsEye size="1.1em" color="#fff" />}
-              </Button>
-            </InputRightElement>
           </InputGroup>
         </Box>
         <Box w="100%">
@@ -102,8 +97,14 @@ const FormLogin = () => {
             />
             <Input id="password-input" color="#fff" sx={{ '::placeholder': { color: '#fff' }, }}
               placeholder="Contraseña"
-              onChange={handleChange} name="contra" type='password'
+              type={showPassword ? 'text' : 'password'}
+              onChange={handleChange} name="contra"
             />
+            <InputRightElement>
+              <Button variant="ghost" onClick={() => setShowPassword(!showPassword)} h="1.25rem" size="sm">
+                  {showPassword ? <BsEyeSlash size="1.1em" color="#fff" /> : <BsEye size="1.1em" color="#fff" />}
+              </Button>
+            </InputRightElement>
           </InputGroup>
         </Box>
         <Box w="100%">
