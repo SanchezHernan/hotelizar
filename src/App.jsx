@@ -1,4 +1,7 @@
 // src/App.jsx
+
+// No vas a hablar con nadie, te va a llegar un código
+
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -11,8 +14,7 @@ import SubirAlojamiento from './pages/Alojamiento/SubirAlojamiento';
 import Propietario from './pages/Propietario';
 import PageMapa from './pages/PageMapa';
 import { UserProvider } from './contexts/UserContext.jsx';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
-
+import MisReservas from './pages/MisReservas.jsx';
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
           <Route path="/propietario" element={<Propietario />} />
           <Route path="/subir-alojamiento" element={<SubirAlojamiento />} />
           <Route path="/mapa" element={<PageMapa />} />
+          <Route path="/mis-reservas" element={<MisReservas />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

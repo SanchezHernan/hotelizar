@@ -38,7 +38,7 @@ const Alojamiento = () => {
     
     return (
       <Box w="100%" h="100vh" display="flex" flexDirection="column" alignItems="center">
-          <Box w="100%" gap="20px" display="flex" flexDirection="column">
+          <Box className='alojamientoBox' w="100%" gap="20px" display="flex" flexDirection="column">
             {error && <Text color="red.500">Error: {error.message}</Text>}
             {data && <CardAlojamiento data={data}/>}
           </Box>

@@ -72,7 +72,7 @@ const CardAlojamiento = ({data}) => {
     }
 
   return (
-    <Box w="100%" display="flex" flexDirection="column" alignItems="center" gap="10px">
+    <Box className='cardAlBox' w="100%" display="flex" flexDirection="column" alignItems="center" gap="10px">
         <Box w="100%" height={["350px", "600px", "600px"]} display="flex" flexDirection="column" alignItems="center">
             <Box w="100%" h="40px" display="flex" alignItems="center" justifyContent="center" bg="rgba(0, 0, 0, 0.3)" position="fixed" zIndex="1" top="0" >
                 <Box w="90%">

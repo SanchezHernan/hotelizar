@@ -35,7 +35,6 @@ const Card = ({data}) => {
         <Box onClick={()=>{navigate('/alojamiento/'+ data.id_rental)}} cursor="pointer" w="100%" display="flex" flexDirection="column" alignItems="center" gap="10px" minW={["","275px"]} maxW={["100%","275px"]}>
             <Box w="100%">
 
-                {/* Carrusel */}
                 <Carousel
                     showThumbs={false} onChange={onChange}
                     onClickItem={onClickItem} 
@@ -51,7 +50,9 @@ const Card = ({data}) => {
 
             <Box borderRadius="0 0 10px 10px" h="80px" mb="20px" w="100%" display="flex" flexDirection="column" alignItems="center" justifyContent="space-between" boxShadow="-4px 7px 21px 0px rgba(112,112,112,0.75)">
                 <Box w="100%" p="0px 10px" display="flex" flexDirection="row" alignItems="center" justifyContent="space-between">
-                    <Text textAlign="left" fontWeight="bold" fontSize="20px">{data.title_rental}</Text>
+                    <Text textAlign="left" fontWeight="bold" fontSize="20px" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
+                        {data.title_rental}
+                    </Text>
                     <Box display="flex" flexDirection="row" alignItems="center">
                         <AiFillStar />
                         <Text textAlign="left">5</Text>

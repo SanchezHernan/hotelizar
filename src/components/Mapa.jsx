@@ -93,7 +93,7 @@ const Mapa = () => {
   }
 
   return (
-    <Box w="100vw" h="100vh" borderRadius="10px">
+    <Box className="map-container">
       <ReactMapGL
         mapboxAccessToken={MAPBOX_TOKEN}
         {...viewport}

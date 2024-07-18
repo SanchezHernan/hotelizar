@@ -5,11 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { BsFillCalendar2RangeFill } from 'react-icons/bs';
 import React from 'react';
 
-const DatePickerInput = ({ selectedDate, onChange, placeholder, id }) => {
-  const isDateDisabled = date => {
-    return date > new Date();
-  };
-
+const DatePickerInput = ({ selectedDate, onChange, placeholder, id, minDate, maxDate }) => {
+  
   return (
     <InputGroup>
       <InputLeftElement pointerEvents="none">
@@ -20,7 +17,8 @@ const DatePickerInput = ({ selectedDate, onChange, placeholder, id }) => {
         onChange={onChange}
         placeholderText={placeholder}
         id={id}
-        filterDate={isDateDisabled}
+        minDate={minDate}
+        maxDate={maxDate}
         customInput={
           <Input
             color="#fff"

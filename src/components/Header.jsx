@@ -1,4 +1,6 @@
-import { Box, Button, FormControl, Input, InputGroup, InputLeftElement, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Divider, Text } from '@chakra-ui/react';
+import { 
+    Box, Button, FormControl, Input, InputGroup, InputLeftElement, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Divider, Text
+} from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import fondo from '../assets/img/fondo-header.jpg';
 import { ImLocation2 } from 'react-icons/im';
@@ -7,6 +9,7 @@ import { IoMdExit, IoMdMenu } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import DatePickerInput from './DatePickerInput';
 import { UserContext } from '../contexts/UserContext';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -30,6 +33,20 @@ const Header = () => {
           ...prevData,
           [name]: value,
         }));
+    };
+
+    const handleCheckInChange = (date) => {
+        setCheckInDate(date);
+        if (checkOutDate && date > checkOutDate) {
+            setCheckOutDate(null);
+        }
+    };
+
+    const handleCheckOutChange = (date) => {
+        setCheckOutDate(date);
+        if (checkInDate && date < checkInDate) {
+            setCheckInDate(null);
+        }
     };
 
     const handleClick = async () => {
@@ -71,6 +88,14 @@ const Header = () => {
                 position="relative"
                 top="0"
             >
+                <Box w="75%" textAlign="center" marginTop="-85px" marginBottom="55px" fontSize="19px" color="white" zIndex="1">
+                    <Text as="span" opacity="0.75">
+                        Para encontrar alojamiento puede utilizar el buscador de abajo o buscar en el{" "}
+                    </Text>
+                    <Link to="/mapa" style={{ color: 'inherit', textDecoration: 'underline', opacity: '1' }}>
+                        MAPA
+                    </Link>
+                </Box>
                 <Box
                     className="fondo"
                     position="absolute"
@@ -112,10 +137,23 @@ const Header = () => {
                     </Box>
                     <Box w="100%" display="flex" flexDirection="row" gap="10px">
                         <Box w="48.5%">
-                            <DatePickerInput id="checkin-input" selectedDate={checkInDate} onChange={setCheckInDate} placeholder="Check-In" />
+                            <DatePickerInput 
+                                id="checkin-input" 
+                                selectedDate={checkInDate} 
+                                onChange={handleCheckInChange} 
+                                placeholder="Check-In"
+                                minDate={new Date()}
+                                maxDate={checkOutDate}
+                            />
                         </Box>
                         <Box w="48.5%">
-                            <DatePickerInput id="checkout-input" selectedDate={checkOutDate} onChange={setCheckOutDate} placeholder="Check-Out" />
+                            <DatePickerInput 
+                                id="checkout-input" 
+                                selectedDate={checkOutDate} 
+                                onChange={handleCheckOutChange} 
+                                placeholder="Check-Out"
+                                minDate={checkInDate || new Date()}
+                            />
                         </Box>
                     </Box>
                     <Button w={["100%", "100%", "100%"]} h="40px" rightIcon={<BsArrowRightCircle />} isLoading={cargando} onClick={handleClick} bg={cargando ? 'oscuro.100' : 'claro.100'} color={cargando ? '#1e1e1e' : '#fff'} variant='solid'>Buscar</Button>
@@ -149,6 +187,8 @@ const Header = () => {
                         {userRole === 'user' && (
                             <>
                                 <Text cursor="pointer" onClick={() => navigate('/propietario')} color="#1e1e1e" textDecoration="underline">Ser Propietario</Text>
+                                <Divider />
+                                <Text cursor="pointer" onClick={() => navigate('/mis-reservas')} color="#1e1e1e" textDecoration="underline">Mis Reservas</Text>
                                 <Divider />
                             </>
                         )}
