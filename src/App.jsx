@@ -14,7 +14,7 @@ import SubirAlojamiento from './pages/Alojamiento/SubirAlojamiento';
 import Propietario from './pages/Propietario';
 import PageMapa from './pages/PageMapa';
 import { UserProvider } from './contexts/UserContext.jsx';
-import MisReservas from './pages/MisReservas.jsx';
+import MisReservas from './pages/MyReservations/MisReservas.jsx';
 
 function App() {
   return (
