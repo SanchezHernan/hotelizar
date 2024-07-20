@@ -1,6 +1,6 @@
 import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, SimpleGrid, Text, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import Volver from '../components/Volver'
+import Navbar from '../components/Navbar'
 import Filtros from '../components/Filtros'
 import Card from '../components/Card'
 import BtnMapa from '../components/BtnMapa'
@@ -35,9 +35,9 @@ const Resultados = () => {
 
   return (
     <Box w="100%" display="flex" flexDirection="column" alignItems="center" h="100vh">
-        <Volver text="Resultados"/>
-        
-        <Box w="85%" mt="50px" maxW={["400px", "600px", "1250px"]} display="flex" flexDirection="column" alignItems="center" h="100vh">
+        <Navbar title="Resultados" />
+
+        <Box w="85%" mt="70px" maxW={["400px", "600px", "1250px"]} display="flex" flexDirection="column" alignItems="center" h="100vh">
           <Box w="100%" display={["flex", "none"]} justifyContent="center">
             <BtnMapa onOpen={onOpen}/>
           </Box>

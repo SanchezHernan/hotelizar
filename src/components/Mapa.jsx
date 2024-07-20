@@ -101,7 +101,7 @@ const Mapa = () => {
         onClick={handleMapClick}
         mapStyle="mapbox://styles/mapbox/streets-v11"
       >
-        <NavigationControl style={{ right: 10, top: 10 }} />
+        <NavigationControl position='bottom-right' />
 
         {alojamientos.map(alojamiento => (
           <Marker

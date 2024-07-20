@@ -1,11 +1,11 @@
 import { Box, Button, Input, Select, Text, Textarea, useToast } from '@chakra-ui/react';
 import React, { useState, useCallback, useMemo, useEffect, useContext } from 'react';
-import Volver from '../../components/Volver';
 import { IoIosArrowDropright } from 'react-icons/io';
 import Servicios from '../../components/Servicios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
+import Navbar from '../../components/Navbar';
 
 const SubirAlojamiento = () => {
 
@@ -110,8 +110,8 @@ const SubirAlojamiento = () => {
 
   return (
     <Box w="100%" display="flex" flexDirection="column" alignItems="center" bg="#fff">
-      <Volver text="Subir Alojamiento" />
-      <Box color="#1e1e1e" w="85%" mt="50px" mb="20px" gap="15px" maxW={["400px", "600px", "800px"]} display="flex" flexDirection="column" alignItems="center">
+      <Navbar title="Subir Alojamiento" />
+      <Box color="#1e1e1e" w="85%" mt="60px" mb="20px" gap="15px" maxW={["400px", "600px", "800px"]} display="flex" flexDirection="column" alignItems="center">
         {fields.map(({ label, name, type, options, placeholder, inputType }) => (
           <Box key={name} w="100%">
             <Text fontWeight="500">{label}</Text>

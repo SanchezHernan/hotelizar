@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import foto from '../assets/img/foto.jpg';
 import maps from '../assets/img/maps.jpg';
-import { MdKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 import { CiCalendarDate, CiLocationOn } from 'react-icons/ci';
 import { AiFillStar } from 'react-icons/ai';
 import { FaBath, FaBed, FaCalendarAlt, FaRegAddressCard, FaRegCreditCard } from 'react-icons/fa';
@@ -15,6 +15,7 @@ import { BiRename } from "react-icons/bi";
 import { GrCreditCard } from "react-icons/gr";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const CardAlojamiento = ({data}) => {
 
@@ -74,11 +75,7 @@ const CardAlojamiento = ({data}) => {
   return (
     <Box className='cardAlBox' w="100%" display="flex" flexDirection="column" alignItems="center" gap="10px">
         <Box w="100%" height={["350px", "600px", "600px"]} display="flex" flexDirection="column" alignItems="center">
-            <Box w="100%" h="40px" display="flex" alignItems="center" justifyContent="center" bg="rgba(0, 0, 0, 0.3)" position="fixed" zIndex="1" top="0" >
-                <Box w="90%">
-                    <MdOutlineKeyboardArrowLeft color="#fff" fontSize="30px" onClick={handleClick}/>
-                </Box>
-            </Box>
+            <Navbar />
             <Carousel showThumbs={false} showArrows={true} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
                 <Box>
                     <Image src={foto} w="100%" height={["350px", "600px", "600px"]} objectFit="fill"/>

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import Volver from '../../components/Volver'
 import { Box, Select, SimpleGrid, Text } from '@chakra-ui/react'
 import Estadisticas from './components/Estadisticas'
 import LineChart from './components/LineChart'
 import PieChart from './components/PieChart'
 import { UserContext } from '../../contexts/UserContext'
+import Navbar from '../../components/Navbar'
 
 // Configuración de gráficos
 const lineChartData = {
@@ -242,7 +242,7 @@ const Panel = () => {
 
   return (
     <Box w="100%" h="100vh" display="flex" flexDirection="column" alignItems="center">
-      <Volver text="Estadisticas" />
+      <Navbar title="Estadísticas" />
       <Text fontSize="xl" mt="50px">{userMessages[userRole]}</Text> {/* Mensaje basado en userRole */}
       <Box w="85%" mt="20px" maxW={["400px", "600px", "800px"]}
         display="flex" flexDirection="column" alignItems="center"

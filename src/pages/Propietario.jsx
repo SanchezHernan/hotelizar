@@ -2,8 +2,8 @@ import { Box } from '@chakra-ui/react'
 import React from 'react'
 import FormPropietario from '../components/FormPropietario';
 import fondo from '../assets/img/fondo-propietario.jpg';
-import Volver from '../components/Volver';
 import withAuthRedirect from '../hoc/withAuthRedirect';
+import Navbar from '../components/Navbar';
 
 const Propietario = () => {
 
@@ -18,7 +18,7 @@ const Propietario = () => {
           background="rgba(0, 0, 0, 0.3)" // Fondo oscuro semitransparente
           zIndex="" // Colocar detrás del contenido
         ></Box>
-        <Volver text="Sé propietario"/>
+        <Navbar title="Sé propietario"/>
         <Box  w="85%" maxW={["400px", "600px", "800px", "1200px"]} justifyContent="center" display="flex" flexDirection="column" alignItems="center" h="100vh">
             <Box w="100%" gap="20px" justifyContent="center" alignItems="center" display="flex" flexDirection={["column", "column", "column"]}>
                 <FormPropietario />
