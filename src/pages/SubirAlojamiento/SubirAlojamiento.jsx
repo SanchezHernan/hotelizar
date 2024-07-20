@@ -1,17 +1,18 @@
 import { Box, Button, Input, Select, Text, Textarea, useToast } from '@chakra-ui/react';
 import React, { useState, useCallback, useMemo, useEffect, useContext } from 'react';
 import { IoIosArrowDropright } from 'react-icons/io';
-import Servicios from '../../components/Servicios';
+import Servicios from './Servicios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import Navbar from '../../components/Navbar';
+// import { addRental } from '../../services/rental';
 
 const SubirAlojamiento = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { userRole } = useContext(UserContext);
+  const { userRole, userId } = useContext(UserContext);
 
   const [formulario, setFormulario] = useState({
     tipo: '',
@@ -61,7 +62,37 @@ const SubirAlojamiento = () => {
     event.preventDefault();
 
     if (validarFormulario()) {
-      console.log('Formulario completo:', formulario);
+      // const rentalData = {
+      //   type_rental: formulario.tipo,
+      //   title_rental: formulario.titulo,
+      //   description_rental: formulario.descripcion,
+      //   addressline1_rental: formulario.direccion,
+      //   addressline2_rental: "",
+      //   addressline3_rental: "",
+      //   allowunverifiedclient_rental: true,
+      //   available_rental: true,
+      //   country_rental: formulario.pais,
+      //   state_rental: formulario.provincia,
+      //   city_rental: formulario.ciudad,
+      //   lat_rental: 0,
+      //   lng_rental: 0,
+      //   pricepernight_rental: formulario.precio_por_noche,
+      //   cleaningfee_rental: 0,
+      //   servicefee_rental: 0,
+      //   minstay_rental: formulario.estadia_minima,
+      //   maxguest_rental: formulario.cantidad_personas,
+      //   numbedrooms_rental: formulario.cantidad_habitaciones,
+      //   numbathrooms_rental: formulario.cantidad_baño,
+      //   isentireplace_rental: true,
+      //   isverified_rental: true,
+      //   averagerating_rental: 0,
+      //   totalrprice_rental: 0,
+      //   client_id: userId,
+      // };
+
+      // addRental(rentalData);
+
+      console.log("formulario completo:", formulario);
     } else {
       toast({
         title: 'Formulario incompleto',

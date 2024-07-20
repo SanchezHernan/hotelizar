@@ -45,7 +45,7 @@ const reservations = {
 const MisReservas = () => (
   <>
     <Navbar title="Mis Reservas" />
-    <Box p={4}>
+    <Box p={4} backgroundColor="#ededed">
       <Text fontSize="1.5rem" fontWeight="bold" mb={2} mt="60px">
         Reservas Actuales
       </Text>

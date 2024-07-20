@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 const ReservationCard = ({ reservation }) => (
   <LinkBox as="article" borderWidth="1px" borderRadius="lg" overflow="hidden" mb={4}>
-    <Card>
-      <Flex>
+    <Card boxShadow='dark-lg' padding="0 5px 5px 12px">
+      <Flex justifyContent="center" alignItems="center">
         <Image src={reservation.image} alt={reservation.title} boxSize="100px" objectFit="cover" />
         <CardBody>
           <Text fontWeight="bold" fontSize="xl" mb={2}>

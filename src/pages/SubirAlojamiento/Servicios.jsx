@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Box, Card, CardBody, CardHeader, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react';
-import pileta from '../assets/img/servicios/pileta.png';
-import billar from '../assets/img/servicios/billar.png';
-import chimenea from '../assets/img/servicios/chimenea.png';
-import comer_afuera from '../assets/img/servicios/comer_afuera.png';
-import fogata from '../assets/img/servicios/fogata.png';
-import gimnasio from '../assets/img/servicios/gimnasio.png';
-import jacuzzi from '../assets/img/servicios/jacuzzi.png';
-import parrilla from '../assets/img/servicios/parrilla.png';
-import patio from '../assets/img/servicios/patio.png';
-import piano from '../assets/img/servicios/piano.png';
+import { Card, CardBody, CardHeader, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react';
+import pileta from '../../assets/img/servicios/pileta.png';
+import billar from '../../assets/img/servicios/billar.png';
+import chimenea from '../../assets/img/servicios/chimenea.png';
+import comer_afuera from '../../assets/img/servicios/comer_afuera.png';
+import fogata from '../../assets/img/servicios/fogata.png';
+import gimnasio from '../../assets/img/servicios/gimnasio.png';
+import jacuzzi from '../../assets/img/servicios/jacuzzi.png';
+import parrilla from '../../assets/img/servicios/parrilla.png';
+import patio from '../../assets/img/servicios/patio.png';
+import piano from '../../assets/img/servicios/piano.png';
 
 const Servicios = ({ servicios }) => {
   const [selectedServices, setSelectedServices] = useState([]);

@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
-import FormPropietario from '../components/FormPropietario';
+import FormPropietario from '../components/FormPropietario/FormPropietario';
 import fondo from '../assets/img/fondo-propietario.jpg';
 import withAuthRedirect from '../hoc/withAuthRedirect';
 import Navbar from '../components/Navbar';

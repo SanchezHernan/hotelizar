@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import booking from '../assets/img/booking.png'
 import ownership from '../assets/img/ownership.png'
+import building from '../assets/img/edificio.png'
 
 const Navbar = ({ title }) => {
 
@@ -75,8 +76,9 @@ const Navbar = ({ title }) => {
                             <Divider />
                             {userRole === 'host' && (
                                 <>
-                                    <Box display='flex' flexDirection='row' w='100%' justifyContent='space-between' cursor="pointer" onClick={() => handleClick('/')}>
-                                        <Text cursor="pointer" onClick={() => navigate('/subir-alojamiento')} color="#1e1e1e">Subir Alojamiento</Text>
+                                    <Box display='flex' flexDirection='row' w='100%' justifyContent='space-between' cursor="pointer" onClick={() => handleClick('/subir-alojamiento')}>
+                                        <Text color="#1e1e1e">Subir Alojamiento</Text>
+                                        <Image src={building} boxSize="20px" />
                                     </Box>
                                     <Divider />
                                 </>

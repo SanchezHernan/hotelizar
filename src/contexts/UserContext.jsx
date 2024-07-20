@@ -16,6 +16,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   const [userRole, setUserRole] = useState('guest'); // Default value is 'guest'
+  const [userId, setUserId] = useState(0);
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -36,6 +37,7 @@ export const UserProvider = ({ children }) => {
             console.log(userData);
             
             setUserRole(userData.roles_client[0]);
+            setUserId(userData.id_client);
           } catch (error) {
             console.error('Error fetching user role:', error);
           }
@@ -49,7 +51,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ accessToken, userRole, setUserRole }}>
+    <UserContext.Provider value={{ accessToken, userRole, setUserRole, userId }}>
       {children}
     </UserContext.Provider>
   );
