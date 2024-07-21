@@ -32,7 +32,7 @@ const Card = ({data}) => {
     ];
 
     return (
-        <Box onClick={()=>{navigate('/alojamiento/'+ data.id_rental)}} cursor="pointer" w="100%" display="flex" flexDirection="column" alignItems="center" gap="10px" minW={["","275px"]} maxW={["100%","275px"]}>
+        <Box onClick={()=>{navigate('/alojamiento/'+ data.id_rental)}} cursor="pointer" w="100%" display="flex" flexDirection="column" alignItems="center" gap="10px" minW={["","240px"]} maxW={["100%","275px"]}>
             <Box w="100%">
 
                 <Carousel

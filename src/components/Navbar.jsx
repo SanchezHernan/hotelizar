@@ -3,7 +3,7 @@ import {
     Box, Button, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Divider, Text,
     useDisclosure, Image
 } from '@chakra-ui/react';
-import { IoMdExit, IoMdMenu, IoMdSearch, IoIosStats, IoIosLogIn, IoMdLogOut } from 'react-icons/io';
+import { IoMdMenu, IoMdSearch, IoIosStats, IoIosLogIn, IoMdLogOut } from 'react-icons/io';
 import { UserContext } from '../contexts/UserContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -40,8 +40,8 @@ const Navbar = ({ title }) => {
     return (
         <>
             <Box w="100%" h="50px" display="flex" gap="20px" alignItems="center" position="fixed" zIndex="10" bg="claroTransparente.100" justifyContent="space-between">
-                <Box paddingLeft="20%" flex="1" textAlign="center">
-                    <Text fontSize="1.4rem">{ title }</Text>
+                <Box paddingLeft="19.7%" flex="1" textAlign="center">
+                    <Text fontSize="1.4rem" fontWeight="medium">{ title }</Text>
                 </Box>
                 <Button ref={btnRef} onClick={onOpen} bg="transparent">
                     <IoMdMenu fontSize="30px" color="#1e1e1e"/>
